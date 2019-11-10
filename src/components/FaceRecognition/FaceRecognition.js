@@ -4,8 +4,8 @@ import React from 'react';
 
 const FaceRecognition = () => {
     return (
-        <div className="ma4 mt0">
-            <h1>Current FaceRecognition</h1>
+        <div className="center pb6 pa3">
+            <img alt="bw" src={'https://samples.clarifai.com/face-det.jpg'} />
         </div>
     )
 }
