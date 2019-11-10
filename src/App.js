@@ -4,9 +4,14 @@ import Logo from './components/Logo/Logo.js';
 import ImageForm from './components/ImageForm/ImageForm';
 import './App.css';
 import Rank from './components/Rank/Rank';
+import Clarifai from 'clarifai';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import Particles from 'react-particles-js'
 
+
+const app = new Clarifai.App({
+  apiKey: 'ea00787c0e474be6ac9562c7192e45f7'
+});
 
 
 const particleSettings = {
@@ -31,7 +36,38 @@ const particleSettings = {
   }
 }
 
+
 class App extends Component {
+  constructor() {
+    super() 
+    this.state = {
+      value: ''
+    }
+  }
+  
+
+
+  onInputChange = (event) => {
+    console.log(event.target.value)
+  }
+
+  onButtonChange = () => {
+    console.log("button pressed")
+    app.models.predict(
+      "a403429f2ddf4b49b307e318f00e528b",
+      "https://samples.clarifai.com/face-det.jpg")
+      .then(
+      function (response) {
+        // do something with response
+        console.log(response)
+      },
+      function (err) {
+        // there was an error
+      }
+    );
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -42,7 +78,7 @@ class App extends Component {
         <Navigation />
          <Logo />
         <Rank />
-        <ImageForm />
+        <ImageForm onButtonChange={this.onButtonChange} onInputChange={this.onInputChange}/>
         <FaceRecognition /> 
       </div>
     )
