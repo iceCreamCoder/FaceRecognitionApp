@@ -11,9 +11,13 @@ import Particles from 'react-particles-js';
 import Register from './components/Register/Register';
 
 
+
 const app = new Clarifai.App({
   apiKey: 'ea00787c0e474be6ac9562c7192e45f7'
 });
+
+
+
 
 
 const particleSettings = {
@@ -51,6 +55,14 @@ class App extends Component {
     }
   }
   
+
+  componentDidMount() {
+    fetch('http://localhost:3000')
+      .then(response => response.json())
+      .then(console.log)
+  }
+
+
 
   calculateFaceLocation = (data) => {
    const clarifaiFaceData = data.outputs[0].data.regions[0].region_info.bounding_box;
