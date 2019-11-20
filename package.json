@@ -2,6 +2,9 @@
   "name": "image-scanner",
   "homepage": "https://iceCreamCoder.github.io/FaceRecognitionApp",
   "version": "0.1.0",
+  "engines": {
+    "node": "12.13.0"
+  },
   "private": true,
   "dependencies": {
     "clarifai": "^2.9.1",
